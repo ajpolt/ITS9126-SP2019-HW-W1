@@ -27,8 +27,14 @@ public class MainActivity extends AppCompatActivity {
                 // Get the word that the user entered
                 String enteredWord = palindromeField.getText().toString();
 
+                // Note: This wasn't covered in class, but just adding it in case you were
+                // wondering how to handle uppercase letters and special characters here.
+                // The two lines convert it to lowercase and remove all non-letter characters:
+                String plainWord = enteredWord.toLowerCase();
+                plainWord = plainWord.replaceAll("[^a-z]", "");
+
                 // Reverse the string
-                StringBuilder sb = new StringBuilder(enteredWord);
+                StringBuilder sb = new StringBuilder(plainWord);
                 String reversed = sb.reverse().toString();
 
                 // Get the TextView for showing our results
@@ -36,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // If the word is the same forward and backward, it is a palindrome
                 // Set the text in the result textview to tell the user either way
-                if(enteredWord.equals(reversed)) {
+                if(plainWord.equals(reversed)) {
                     result.setText(enteredWord + " is a palindrome");
                 } else {
                     result.setText(enteredWord + " is NOT a palindrome");
